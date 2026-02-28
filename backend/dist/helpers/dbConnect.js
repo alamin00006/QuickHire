@@ -16,24 +16,25 @@ exports.databaseConnect = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = __importDefault(require("../config"));
 mongoose_1.default.set('strictQuery', false);
-let cached = global.mongoose;
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
-}
-const databaseConnect = () => __awaiter(void 0, void 0, void 0, function* () {
-    if (cached.conn)
-        return cached.conn;
-    if (!cached.promise) {
-        cached.promise = mongoose_1.default.connect(config_1.default.database_url, {
-            serverSelectionTimeoutMS: 5000,
-            autoIndex: true,
-            maxPoolSize: 10,
-            socketTimeoutMS: 45000,
-            family: 4,
+// MongoDB connection options
+const mongooseOptions = {
+    serverSelectionTimeoutMS: 5000,
+    autoIndex: true,
+    maxPoolSize: 10,
+    socketTimeoutMS: 45000,
+    family: 4,
+};
+const databaseConnect = (server) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield mongoose_1.default.connect(config_1.default.database_url, mongooseOptions);
+        console.log('🛢 Database connected successfully');
+        server.listen(config_1.default.port || 8000, () => {
+            console.log(`Application listening on port ${config_1.default.port || 8000}`);
         });
     }
-    cached.conn = yield cached.promise;
-    console.log('🛢 Database connected');
-    return cached.conn;
+    catch (err) {
+        console.error('Failed to connect to database', err);
+        process.exit(1);
+    }
 });
 exports.databaseConnect = databaseConnect;

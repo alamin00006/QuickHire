@@ -3,26 +3,25 @@ import config from '../config'
 
 mongoose.set('strictQuery', false)
 
-let cached: any = global.mongoose
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
+// MongoDB connection options
+const mongooseOptions = {
+  serverSelectionTimeoutMS: 5000,
+  autoIndex: true,
+  maxPoolSize: 10,
+  socketTimeoutMS: 45000,
+  family: 4,
 }
 
-export const databaseConnect = async () => {
-  if (cached.conn) return cached.conn
+export const databaseConnect = async (server: any) => {
+  try {
+    await mongoose.connect(config.database_url as string, mongooseOptions)
+    console.log('🛢 Database connected successfully')
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(config.database_url as string, {
-      serverSelectionTimeoutMS: 5000,
-      autoIndex: true,
-      maxPoolSize: 10,
-      socketTimeoutMS: 45000,
-      family: 4,
+    server.listen(config.port || 8000, () => {
+      console.log(`Application listening on port ${config.port || 8000}`)
     })
+  } catch (err) {
+    console.error('Failed to connect to database', err)
+    process.exit(1)
   }
-
-  cached.conn = await cached.promise
-  console.log('🛢 Database connected')
-  return cached.conn
 }
