@@ -14,7 +14,12 @@ const server = http.createServer(app)
 // ============================
 // Allowed Origins
 // ============================
-const allowedOrigins = ['http://localhost:8080', 'http://localhost:3000']
+const allowedOrigins = [
+  'http://localhost:8080',
+  'http://localhost:3000',
+  'https://quick-hire-2wzg.vercel.app',
+  'https://quick-hire-xrjd.vercel.app',
+]
 
 // ============================
 // Middleware
