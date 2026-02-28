@@ -1,15 +1,15 @@
 import httpStatus from 'http-status'
 import ApiError from '../../../errors/ApiError'
 import { jwtHelpers } from '../../../helpers/jwtHelpers'
-import { IUser } from './user.interface'
-import { UserRegistration } from './user.model'
+import { IUser } from '../user/user.interface'
+import { UserRegistration } from '../user/user.model'
 
 /* ===============================
-   🧑‍💻 REGISTER USER
+   🧑 REGISTER USER
 ================================ */
 
-const createUserRegistration = async (payload: IUser) => {
-  // 🔎 Check existing user by email
+const createUser = async (payload: IUser) => {
+  //  Check existing user by email
   const isExist = await UserRegistration.findOne({
     email: payload.email,
   })
@@ -21,10 +21,10 @@ const createUserRegistration = async (payload: IUser) => {
     )
   }
 
-  // ✅ Create user (password auto hashed in pre-save)
+  //  Create user (password auto hashed in pre-save)
   const user = await UserRegistration.create(payload)
 
-  // 🔐 Generate JWT
+  //  Generate JWT
   const token = jwtHelpers.generateToken({
     id: user.id,
     email: user.email,
@@ -35,7 +35,7 @@ const createUserRegistration = async (payload: IUser) => {
 }
 
 /* ===============================
-   🔑 LOGIN USER
+   LOGIN USER
 ================================ */
 
 const createLogin = async (email: string, password: string) => {
@@ -71,7 +71,7 @@ const createLogin = async (email: string, password: string) => {
   if (!isMatched) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Invalid credentials.')
   }
-  console.log(user)
+
   //  Generate token
   const token = jwtHelpers.generateToken({
     id: user.id,
@@ -116,7 +116,7 @@ const getAllUsers = async () => {
 }
 
 export const userService = {
-  createUserRegistration,
+  createUser,
   createLogin,
   getUserByEmail,
   getAllUsers,

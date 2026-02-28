@@ -37,7 +37,7 @@ const LoginCard = () => {
         setCredentials({
           accessToken: res.data.accessToken,
           user: res.data.user,
-        }),
+        })
       );
       console.log(res.data.user);
 
@@ -89,13 +89,13 @@ const LoginCard = () => {
           />
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <Checkbox
             checked={rememberMe}
             onCheckedChange={(v) => setRememberMe(v as boolean)}
           />
           <Label className="text-sm">Remember me</Label>
-        </div>
+        </div> */}
 
         <Button type="submit" disabled={isLoading} className="w-full h-12">
           {isLoading ? (

@@ -17,6 +17,7 @@ QuickHire is a mini full-stack job board application where users can browse jobs
 ### Admin
 
 - Add new jobs
+  -Update jobs
 - Delete jobs
 
 ---
@@ -26,7 +27,6 @@ QuickHire is a mini full-stack job board application where users can browse jobs
 **Frontend:** Next.js / React.js, Tailwind CSS, TypeScript
 **Backend:** Node.js, Express.js
 **Database:** MongoDB + Mongoose
-**Tools:** Git, Postman, Vercel/Render (optional)
 
 ---
 
@@ -34,21 +34,23 @@ QuickHire is a mini full-stack job board application where users can browse jobs
 
 **Jobs**
 
-- `GET /api/jobs`
-- `GET /api/jobs/:id`
-- `POST /api/jobs`
-- `DELETE /api/jobs/:id`
+- `GET /api/v1/jobs`
+- `GET /api/v1/jobs/:id`
+- `PATCH /api/v1/jobs/:id`
+- `POST /api/v1/jobs`
+- `DELETE /api/v1/jobs/:id`
 
 **Applications**
 
-- `POST /api/applications`
+- `POST /api/v1/applications`
 
 ---
 
 ## 🗄 Database Models
 
-**Job:** title, company, location, category, description
+**Job:** title, company, category, description
 **Application:** job_id, name, email, resume_link, cover_note
+**Location:** city, country
 
 ---
 
@@ -57,9 +59,18 @@ QuickHire is a mini full-stack job board application where users can browse jobs
 ### Backend
 
 ```bash
-cd server
+cd backend
 npm install
 npm run dev
+env
+```
+
+```code
+MONGO_URI=mongodb+srv://Alamin:ZnEUylHANPiysG7L@cluster0.scp6egc.mongodb.net/Jobs?retryWrites=true&w=majority
+ACCESS_TOKEN_SECRET=myAccessToken
+BCRYPT_SALT_ROUNDS=12
+JWT_EXPIRES_IN=7d
+PORT=8000
 ```
 
 ### Frontend
@@ -68,31 +79,26 @@ npm run dev
 cd client
 npm install
 npm run dev
+env
+VITE_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+### Admin
+
+```bash
+cd admin
+npm install
+npm run dev
+env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
+NODE_ENV=development
 ```
 
 ---
 
-## 🎯 Demo & Links
+## Github Repo Links
 
-- GitHub Repo: _Add link_
-- Loom Demo: _Add link_
-- Live Site: _Add link_
-
----
-
-## Author
-
-**Mohammad Al Amin**
-Full Stack Developer
-
----
-
-## Future Improvements
-
-- Admin authentication
-- Edit jobs
-- Resume file upload
-- Pagination & advanced filtering
+- GitHub Repo: _[https://github.com/alamin00006/QuickHire]_
 
 ---
 

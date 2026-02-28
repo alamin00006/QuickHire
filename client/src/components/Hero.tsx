@@ -26,7 +26,7 @@ const Hero = () => {
 
   return (
     <section
-      className="pt-[72px]  bg-[#F8F8FD] relative overflow-hidden border border-transparent"
+      className="pt-[72px] bg-[#F8F8FD] relative overflow-hidden border border-transparent"
       style={{
         clipPath: isMobile
           ? ""
@@ -37,15 +37,16 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* LEFT COLUMN */}
           <div className="relative z-10">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
               Discover
               <br />
               more than
               <br />
               <span className="text-[#26A4FF] relative inline-block">
                 5000+ Jobs
+                {/* Responsive underline */}
                 <svg
-                  className="absolute -bottom-3 left-0 w-full h-5 "
+                  className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-4 sm:h-5"
                   viewBox="0 0 400 20"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -53,47 +54,22 @@ const Hero = () => {
                   <path
                     d="M0 10 Q100 0 200 10 T400 10"
                     stroke="currentColor"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <svg
-                  className="absolute -bottom-3 left-0 w-full h-5"
-                  viewBox="0 0 400 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 10 Q100 0 200 10 T400 10"
-                    stroke="currentColor"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <svg
-                  className="absolute -bottom-1.5 left-0 w-full h-5"
-                  viewBox="0 0 400 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 10 Q100 0 200 10 T400 10"
-                    stroke="currentColor"
-                    strokeWidth="5"
+                    strokeWidth="4"
                     strokeLinecap="round"
                   />
                 </svg>
               </span>
             </h1>
 
-            <p className="text-gray-600 text-lg sm:text-xl mb-10 max-w-2xl">
+            <p className="text-gray-600 text-base sm:text-lg mb-6 sm:mb-10 max-w-2xl">
               Great platform for the job seeker that searching for new career
               heights and passionate about startups.
             </p>
 
-            {/* SEARCH BAR – square-ish corners, small radius */}
-            <div className="flex flex-col sm:flex-row bg-white border border-gray-300 rounded-lg shadow-lg max-w-3xl">
-              <div className="flex items-center gap-4 px-5 sm:px-6 py-4 flex-1 border-b sm:border-b-0 sm:border-r border-gray-300">
+            {/* SEARCH BAR – fully responsive */}
+            <div className="flex flex-col sm:flex-row bg-white border border-gray-300 rounded-lg shadow-lg max-w-3xl w-full">
+              {/* Job input */}
+              <div className="flex items-center gap-4 px-5 py-4 flex-1 border-b sm:border-b-0 sm:border-r border-gray-300">
                 <Search className="w-5 h-5 text-gray-500 shrink-0" />
                 <input
                   type="text"
@@ -104,7 +80,8 @@ const Hero = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-4 px-5 sm:px-6 py-4 flex-1 border-b sm:border-b-0 sm:border-r border-gray-300">
+              {/* Location select */}
+              <div className="flex items-center gap-4 px-5 py-4 flex-1 border-b sm:border-b-0 sm:border-r border-gray-300">
                 <MapPin className="w-5 h-5 text-gray-500 shrink-0" />
                 {isLoading ? (
                   <span className="text-gray-500 text-base">Loading...</span>
@@ -127,15 +104,16 @@ const Hero = () => {
                 )}
               </div>
 
+              {/* Search button */}
               <button
                 onClick={handleSearch}
-                className="bg-blue-600 text-white px-8 py-4 text-base font-semibold hover:bg-blue-700 transition-colors "
+                className="bg-blue-600 text-white px-6 py-4 text-base font-semibold hover:bg-blue-700 transition-colors w-full sm:w-auto"
               >
                 Search my job
               </button>
             </div>
 
-            <p className="mt-6 text-sm text-gray-600">
+            <p className="mt-4 sm:mt-6 text-sm text-gray-600">
               Popular :{" "}
               <span className="text-gray-900 font-medium">
                 UI Designer, UX Researcher, Android, Admin
@@ -144,19 +122,17 @@ const Hero = () => {
           </div>
 
           {/* RIGHT COLUMN – angled bottom-right corner */}
-          <div className="hidden lg:flex justify-end  min-h-[580px] items-end">
+          <div className="hidden lg:flex justify-end min-h-[580px] items-end relative">
             {/* Pattern background */}
-            <div className="absolute right-20 -top-10 bg-cover bg-center ">
+            <div className="absolute right-20 -top-10 bg-cover bg-center">
               <img
                 src={pattern}
-                alt="Excited job seeker"
+                alt="Pattern background"
                 className="max-h-[840px] object-contain relative z-20 drop-shadow-2xl"
               />
             </div>
-            {/* Angled / clipped bottom-right corner */}
-            <div className="absolute" style={{}} />
 
-            {/* Person – aligned to bottom */}
+            {/* Person image */}
             <img
               src={heroPerson}
               alt="Excited job seeker"

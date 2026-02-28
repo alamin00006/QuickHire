@@ -4,7 +4,7 @@ import config from './config'
 
 import { Job } from './app/modules/job/job.model'
 import { Location } from './app/modules/location/location.model'
-import { UserRegistration } from './app/modules/clientRegistration/user.model'
+import { UserRegistration } from './app/modules/user/user.model'
 
 dotenv.config()
 
