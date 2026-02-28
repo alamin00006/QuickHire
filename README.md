@@ -19,12 +19,13 @@ QuickHire is a mini full-stack job board application where users can browse jobs
 - Add new jobs
   -Update jobs
 - Delete jobs
+  -View job applications
 
 ---
 
 ## Tech Stack
 
-**Frontend:** Next.js / React.js, Tailwind CSS, TypeScript
+**Frontend:** React.js+Vite, Tailwind CSS, TypeScript
 **Backend:** Node.js, Express.js
 **Database:** MongoDB + Mongoose
 
@@ -62,10 +63,10 @@ QuickHire is a mini full-stack job board application where users can browse jobs
 cd backend
 npm install
 npm run dev
-env
 ```
 
 ```code
+env:
 MONGO_URI=mongodb+srv://Alamin:ZnEUylHANPiysG7L@cluster0.scp6egc.mongodb.net/Jobs?retryWrites=true&w=majority
 ACCESS_TOKEN_SECRET=myAccessToken
 BCRYPT_SALT_ROUNDS=12
@@ -79,7 +80,7 @@ PORT=8000
 cd client
 npm install
 npm run dev
-env
+env:
 VITE_API_BASE_URL=http://localhost:8000/api/v1
 ```
 
@@ -89,7 +90,7 @@ VITE_API_BASE_URL=http://localhost:8000/api/v1
 cd admin
 npm install
 npm run dev
-env
+env:
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
 NODE_ENV=development
 ```
